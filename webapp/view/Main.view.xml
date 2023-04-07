@@ -1,0 +1,88 @@
+<mvc:View controllerName="produtoconsulta.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <FlexBox id="flxid" justifyContent="Center">
+                <Input id = "inpBuscar" />
+                <Button id="btnBuscar" text="Buscar" press="onpressBuscar" />
+            </FlexBox> 
+
+            
+            <VBox id="vbox_prod1" visible="true"> 
+                <ObjectHeader id="objhdr_01"
+                    title = "{ModeloProduto>/product/product_name}"
+                    number = "{ModeloProduto>/product/product_quantity}">
+                    <attributes>
+                        <ObjectAttribute id="objatt_01"
+                            title = "Código de Barras"
+                            text = "{ModeloProduto>/code}" />
+                        <ObjectAttribute id="objeatt_02"
+                            title = "Marca"
+                            text = "{ModeloProduto>/product/brands}" />
+                    </attributes>
+    
+                </ObjectHeader>
+
+                <Panel id = "objpanel_01" headerText="Informações">
+                    <content>
+                        <HBox id = 'objhbox_01' >
+                            <Image id = "objimage_01" src="{ModeloProduto>/product/image_front_url}" width="5em" press="onClickImage">
+                            </Image>
+                            <VBox id = "objvbox_02">
+                                <ObjectAttribute id="objatt_03"
+                                title = "Categorias"
+                                text = "{ModeloProduto>/product/categories}" />
+
+                                <ObjectAttribute id="objatt_04"
+                                title = "Avisos"
+                                text = "{ModeloProduto>/product/ecoscore_data/adjustments/origins_of_ingredients/warning}" />
+
+                                <ObjectAttribute id="objatt_05"
+                                title = "Fabricação"
+                                text = "{ModeloProduto>/product/manufacturing_places}" />
+                            </VBox>
+                        </HBox>
+                    </content>
+                </Panel>
+
+                <Panel id = "objpanel_02" headerText="Ingredientes">
+                    <content>
+                        <HBox id = 'objhbox_03' >
+                            <Image id = "objimage_11" src="{ModeloProduto>/product/image_ingredients_url}" width="5em" press="onClickImage">
+                            </Image>
+                            <Table Items="{ModeloProduto>/product/ingredients}">
+                                <columns>
+                                    <Column >
+                                        <Text text = "Descrição"></Text>
+                                    </Column>
+                                    <Column >
+                                        <Text text = "Porcentagem Mínima"></Text>
+                                    </Column>
+                                    <Column >
+                                        <Text text = "Porcentagem Máxima"></Text>
+                                    </Column>
+                                    <Column >
+                                        <Text text = "Porcentagem Estimada"></Text>
+                                    </Column>
+                                </columns>
+                                <items>
+                                   <ColumnListItem >
+                                    <cells>
+                                        <Text text = "{ModeloProduto>text}"></Text>
+                                        <Text text = "{ModeloProduto>percent_min}"></Text>
+                                        <Text text = "{ModeloProduto>percent_max}"></Text>
+                                        <Text text = "{ModeloProduto>percent_estimate}"></Text>
+                                    </cells>
+                                   </ColumnListItem> 
+                                </items>
+                            </Table>
+
+                        </HBox>
+                    </content>
+                </Panel>
+            </VBox>
+
+        </content>
+    </Page>
+</mvc:View>
